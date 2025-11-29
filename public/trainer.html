@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
     <script defer src="/_vercel/insights/script.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
+    <link rel="stylesheet" href="style.css">
     <title>Elian Trainer</title>
     <meta
       name="description"
@@ -15,7 +19,26 @@
     />
   </head>
   <body>
-    <h1>Test</h1>
+    <div>
+
+      <div class="Head">
+        <p>Elian Trainer</p>
+        <p id="score">0/0</p>
+        <p id="pos">0:0</p>
+        <button id="popup-button">Open Popup</button>
+      </div>
+
+      <div class="Glyphs" id="glyphs">
+        
+      </div>
+
+      <div class="Input" id="input">
+        
+      </div>
+
+    </div>
     
+
+    <script src="trainer_script.js"></script>
   </body>
 </html>
