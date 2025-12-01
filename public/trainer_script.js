@@ -34,8 +34,8 @@ let line = 0;
 let showPopup = false;
 
 let word_limit = 250;
-let char_too = 2;
-let source = chose_words(char_too, word_limit);//[words[0], words[4], words[2], words[3], words[7]];
+let selected = 2;
+let source = chose_words(selected, word_limit);//[words[0], words[4], words[2], words[3], words[7]];
 let text_lines  = [[]];
 let glyph_lines = [[]];
 let current_line = 0;
@@ -99,10 +99,63 @@ function chose_words(char_too, word_limit) {
 }
 
 function togglePopup() {
+    console.log(selected);
     showPopup = !showPopup;
+
+    if (!showPopup) {
+        document.getElementById("popup").innerHTML = "";
+    } else {
+        let Overlay = document.createElement("div");
+        Overlay.className = "popup-overlay";
+
+        let Content = document.createElement("div");
+        Overlay.className = "popup-content";
+
+        let Title = document.createElement("h2");
+        Title.textContent = "OPTIONS";
+
+        let ButtonGrid = document.createElement("div");
+        ButtonGrid.className = "button-grid";
+
+        for (let i=0; i < 9; i++) {
+            let button = document.createElement("p");
+            button.id = i;
+            button.innerText = String.fromCharCode(97+i);
+            button.className = i <= selected ? "button-selected" : "button-not-selected";
+            ButtonGrid.appendChild(button);
+        }
+
+        let SelectionDiv = document.createElement("div");
+
+        let DownButton = document.createElement("button");
+        DownButton.addEventListener("click", () => { if (selected != 0) { updateSelection(selected-1) }});
+        DownButton.innerText = "<";
+
+        let UpButton = document.createElement("button");
+        UpButton.addEventListener("click", () => { if (selected != 25) { updateSelection(selected+1) }});
+        UpButton.innerText = ">";
+
+        SelectionDiv.appendChild(DownButton);
+        SelectionDiv.appendChild(UpButton);
+
+        let CloseButton = document.createElement("button");
+        CloseButton.addEventListener("click", togglePopup);
+        CloseButton.innerText = "CLOSE";
+
+        Content.appendChild(Title);
+        Content.appendChild(ButtonGrid);
+        Content.appendChild(SelectionDiv);
+        Content.appendChild(SelectionDiv);
+        Content.appendChild(CloseButton);
+
+        Overlay.appendChild(Content);
+        document.getElementById("popup").appendChild(Overlay);
+    }
 };
 
 function update_current() {
+    current_line = 0;
+    current_size = 0;
     for(let i=0;i<source.length;i++) {
       let glyph_row = [];
       let glyph_length = 0;
@@ -122,6 +175,7 @@ function update_current() {
         glyph_lines.push([]);
       }
 
+      console.log(i, current_line, text_lines, source);
       current_size += glyph_length;
       text_lines[current_line].push(...source[i]);
       text_lines[current_line].push(32);
@@ -130,8 +184,8 @@ function update_current() {
 }
 
 function updateSelection(new_selcted) {
-    char_too = new_selcted;
-    source = chose_words(char_too, word_limit);
+    selected = new_selcted;
+    source = chose_words(selected, word_limit);
     text_lines = [[]];
     glyph_lines = [[]];
     update_current();
@@ -192,6 +246,7 @@ function handleKeyDown(event) {
     };
 
 document.addEventListener('keydown', handleKeyDown);
+document.getElementById("popup-button").addEventListener("click", togglePopup);
 
 update_current();
 setDG(glyph_lines[0]);
