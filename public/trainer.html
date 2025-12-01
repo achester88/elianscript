@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.va = window.va || function () {
+            (window.vaq = window.vaq || []).push(arguments);
+        };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Elian Trainer</title>
     <meta
-      name="description"
-      content=""
+            name="description"
+            content=""
     />
-  </head>
-  <body>
-    <div>
+</head>
+<body>
+<div class="Main">
 
-      <div class="Head">
-        <p>Elian Trainer</p>
-        <p id="score">0/0</p>
-        <p id="pos">0:0</p>
-        <button id="popup-button">Open Popup</button>
-      </div>
+    <div id="head-div">
+        <div class="Head">
+            <p>Elian Trainer</p>
+            <p id="score">100% (0/0)</p>
+<!--            <p id="pos">0:0</p>-->
+            <p id="timer">0:00</p>
+            <button id="popup-button">Menu</button>
+        </div>
+    </div>
 
-      <div class="Glyphs" id="glyphs">
-        
-      </div>
-
-      <div class="Input" id="input">
-        
-      </div>
+    <div class="Glyphs" id="glyphs">
 
     </div>
 
-    <div class="Popup" id="popup"></div>
-    
+    <div class="Input" id="input">
 
-    <script src="trainer_script.js"></script>
-  </body>
+    </div>
+
+</div>
+
+<div class="Popup" id="popup"></div>
+
+
+<script src="trainer_script.js"></script>
+</body>
 </html>
